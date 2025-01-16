@@ -15,9 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class OpenMeteoAPITestController {
     private final WeatherService weather;
-    @GetMapping("/getWeatherForCity/{id}")
-    public ResponseEntity<WeatherCondition> getWeatherForCity(@PathVariable Integer id) {
-        WeatherCondition condition = weather.getCityWeather(id);
+    @GetMapping("/getWeatherForCityId/{id}")
+    public ResponseEntity<WeatherCondition> getWeatherForCityId(@PathVariable Integer id) {
+        WeatherCondition condition = weather.getCityIdWeather(id);
         return ResponseEntity.ok(condition);
+    }
+
+    @GetMapping("/getWeatherForCityName/{name}")
+    public ResponseEntity<WeatherCondition> getWeatherForCityName(@PathVariable String name) {
+        WeatherCondition condition = weather.getCityNameWeather(name);
+        return ResponseEntity.ok(condition);
+
+        // TODO: Enhancement in care argumentul sa fie numele orasului si nu ID-ul
     }
 }
